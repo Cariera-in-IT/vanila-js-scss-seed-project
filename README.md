@@ -17,8 +17,17 @@ The main reason behind this is to help you make your work public and easy to lin
 
 
 ## Commands
+
 ### Make your own copy
 Click the big green button "Use this template" on https://github.com/CosticaPuntaru/vanilla-js-seed and set your project name
+
+### Cloning the repository
+On your github repository click the green button `code` and copy the url
+
+in a directory run `git clone <paste the url>`
+
+open the newly created 
+
 
 ### Starting local environment
 `npm run start`

@@ -9,13 +9,17 @@ The main reason behind this is to help you make your work public and easy to lin
 
 
 ## prerequisites 
-You need to have node.js installed, you can find the download here: https://nodejs.org/en/
+1. You need to have node.js installed, you can find the download here: https://nodejs.org/en/
+2. You need a github account https://github.com/signup
+3. You need to git installed on your computer https://git-scm.com/downloads
+4. [optional] setup ssh key to avoid prompt of username and password when using `npm run github` (this only needs to be done once per computer) https://docs.github.com/en/authentication/connecting-to-github-with-ssh keep in mind that the computer that you do this for, will always have rights to change files on all your github repoistory
+
 
 ## Commands
 ### Starting local environment
 `npm run start`
 
-### Sending all the changes to github
+### Publishing all the changes to github pages
 `npm run github`
 
 ## Working at your projects
@@ -34,3 +38,6 @@ Notes:
 
 ## Enabling github pages for your project
 ![alt text](./enable-page.jpg)
+
+Use the link provided after hitting save to brag about your awesome work!
+

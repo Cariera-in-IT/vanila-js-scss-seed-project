@@ -1,0 +1,16 @@
+@import "reset";
+
+
+body {
+  background: #ccc;
+}
+
+.testBackground {
+  height: 200px;
+  width: 100%;
+  background-image: url("../assets/images/background.jpg");
+}
+
+.container {
+  margin: 2rem auto;
+}

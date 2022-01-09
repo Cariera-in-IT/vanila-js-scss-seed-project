@@ -26,7 +26,9 @@ On your github repository click the green button `code` and copy the url
 
 in a directory run `git clone <paste the url>`
 
-open the newly created 
+open the newly created folder with the repository name in your favorite editor 
+
+Open a terminal in the editor and run `npm install`
 
 
 ### Starting local environment

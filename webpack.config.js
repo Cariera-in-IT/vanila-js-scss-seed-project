@@ -8,11 +8,11 @@ const {BaseHrefWebpackPlugin} = require('base-href-webpack-plugin');
 var gitRemote = require('child_process').execSync('git remote get-url origin').toString();
 const gitSearch = /(git@|https:\/\/)([\w\.@]+)(\/|:)([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})/
 
-const repositoryName = gitSearch && gitRemote.match(gitSearch) && gitRemote.match(gitSearch)[5]
-
-
+const repositoryName = gitRemote && gitRemote.match(gitSearch) && gitRemote.match(gitSearch)[5]
+const gitUserName = gitRemote && gitRemote.match(gitSearch) && gitRemote.match(gitSearch)[4]
 const baseHref = process.env.WEBPACK_DEV_SERVER || !repositoryName ? '/' : `/${repositoryName}/`;
 
+console.log('Your github pages url should:', `https://${gitUserName}.github.io/${repositoryName}/`)
 let multipleHtmlPlugins = filepaths.map(path => {
     const relativePath = path.replace(/^src\//, '');
     return new HtmlWebpackPlugin({
@@ -23,7 +23,6 @@ let multipleHtmlPlugins = filepaths.map(path => {
 });
 
 const absoluteSrc = path.resolve(__dirname, `./src`)
-console.log('baseHref', baseHref)
 module.exports = {
     mode: "development",
     context: absoluteSrc,

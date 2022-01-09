@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"maybe works $1\"",
+    "page-url": "node ./webpack.config.js",
     "test2": "npm run test $1",
     "start": "webpack-dev-server --hot -d --open",
     "watch": "nodemon --exec \"npm run start\" ./webpack.config.js",
     "build": "rimraf ./docs && webpack",
-    "github": "(npm run build) && (git add .) && (git commit -a -m \"No message\" || exit 0) && (git push origin main)"
+    "github": "(npm run build) && (git add .) && (git commit -a -m \"No message\" || exit 0) && (git push origin main) && npm run page-url"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

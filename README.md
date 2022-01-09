@@ -18,7 +18,7 @@ The main reason behind this is to help you make your work public and easy to lin
 
 ## Commands
 ### Make your own copy
-Click the big green button "Use this template" and set your project name
+Click the big green button "Use this template" on https://github.com/CosticaPuntaru/vanilla-js-seed and set your project name
 
 ### Starting local environment
 `npm run start`

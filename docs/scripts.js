@@ -94,7 +94,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/vanilla-js-seed/_/README-480006d6850af18c3f74cb1640305f98.md\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi4vUkVBRE1FLm1kP2NhMWYiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBZSw4SEFBK0QiLCJmaWxlIjoiLi4vUkVBRE1FLm1kLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgXCIvdmFuaWxsYS1qcy1zZWVkL18vUkVBRE1FLTQ4MDAwNmQ2ODUwYWYxOGMzZjc0Y2IxNjQwMzA1Zjk4Lm1kXCI7Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///../README.md\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/vanila-js-scss-seed-project/_/README-480006d6850af18c3f74cb1640305f98.md\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi4vUkVBRE1FLm1kP2NhMWYiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBZSwwSUFBMkUiLCJmaWxlIjoiLi4vUkVBRE1FLm1kLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgXCIvdmFuaWxhLWpzLXNjc3Mtc2VlZC1wcm9qZWN0L18vUkVBRE1FLTQ4MDAwNmQ2ODUwYWYxOGMzZjc0Y2IxNjQwMzA1Zjk4Lm1kXCI7Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///../README.md\n");
 
 /***/ }),
 
@@ -139,7 +139,7 @@ eval("/**\n * Copyright (c) 2014-present, Facebook, Inc.\n *\n * This source cod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/vanilla-js-seed/assets/images/image-f15b4095a5731cdf9d61060271687805.jpg\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hc3NldHMvaW1hZ2VzL2ltYWdlLmpwZz8zZjM1Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQWUsMElBQTJFIiwiZmlsZSI6Ii4vYXNzZXRzL2ltYWdlcy9pbWFnZS5qcGcuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcIi92YW5pbGxhLWpzLXNlZWQvYXNzZXRzL2ltYWdlcy9pbWFnZS1mMTViNDA5NWE1NzMxY2RmOWQ2MTA2MDI3MTY4NzgwNS5qcGdcIjsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./assets/images/image.jpg\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"/vanila-js-scss-seed-project/assets/images/image-f15b4095a5731cdf9d61060271687805.jpg\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9hc3NldHMvaW1hZ2VzL2ltYWdlLmpwZz8zZjM1Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FBQWUsc0pBQXVGIiwiZmlsZSI6Ii4vYXNzZXRzL2ltYWdlcy9pbWFnZS5qcGcuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcIi92YW5pbGEtanMtc2Nzcy1zZWVkLXByb2plY3QvYXNzZXRzL2ltYWdlcy9pbWFnZS1mMTViNDA5NWE1NzMxY2RmOWQ2MTA2MDI3MTY4NzgwNS5qcGdcIjsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./assets/images/image.jpg\n");
 
 /***/ }),
 

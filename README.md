@@ -1,5 +1,6 @@
 # vanilla-js-seed
-***WARNING***: this is a work in progress
+***WARNING***: this is a work in progress, for now
+
 ## Reasoning
 This aims to help new junior/non-developers aspiring to learn javascript/scss/sass.
 

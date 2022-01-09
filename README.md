@@ -54,5 +54,8 @@ Notes:
 ## Enabling github pages for your project
 ![alt text](./enable-page.jpg)
 
+After you click save, or whenever you use `git push` or `npm run github` 
+it may take some time to see the changes in the provided ulr
+
 Use the link provided after hitting save to brag about your awesome work!
 

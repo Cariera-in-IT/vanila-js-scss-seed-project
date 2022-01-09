@@ -1,6 +1,3 @@
-const dotenv = require('dotenv');
-dotenv.config();
-
 const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,7 +5,13 @@ const globule = require('globule');
 const filepaths = globule.find('src/**/*.html');
 const {BaseHrefWebpackPlugin} = require('base-href-webpack-plugin');
 
-const baseHref = process.env.WEBPACK_DEV_SERVER ? '/' : process.env.BASE_HREF;
+var gitRemote = require('child_process').execSync('git remote get-url origin').toString();
+const gitSearch = /(git@|https:\/\/)([\w\.@]+)(\/|:)([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})/
+
+const repositoryName = gitSearch && gitRemote.match(gitSearch) && gitRemote.match(gitSearch)[5]
+
+
+const baseHref = process.env.WEBPACK_DEV_SERVER || !repositoryName ? '/' : `/${repositoryName}`;
 
 let multipleHtmlPlugins = filepaths.map(path => {
     const relativePath = path.replace(/^src\//, '');

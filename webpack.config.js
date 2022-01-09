@@ -11,7 +11,7 @@ const gitSearch = /(git@|https:\/\/)([\w\.@]+)(\/|:)([\w,\-,\_]+)\/([\w,\-,\_]+)
 const repositoryName = gitSearch && gitRemote.match(gitSearch) && gitRemote.match(gitSearch)[5]
 
 
-const baseHref = process.env.WEBPACK_DEV_SERVER || !repositoryName ? '/' : `/${repositoryName}`;
+const baseHref = process.env.WEBPACK_DEV_SERVER || !repositoryName ? '/' : `/${repositoryName}/`;
 
 let multipleHtmlPlugins = filepaths.map(path => {
     const relativePath = path.replace(/^src\//, '');

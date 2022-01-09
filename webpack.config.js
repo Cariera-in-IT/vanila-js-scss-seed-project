@@ -23,7 +23,7 @@ let multipleHtmlPlugins = filepaths.map(path => {
 });
 
 const absoluteSrc = path.resolve(__dirname, `./src`)
-
+console.log('baseHref', baseHref)
 module.exports = {
     mode: "development",
     context: absoluteSrc,
@@ -91,7 +91,7 @@ module.exports = {
             options: {
                 multiple: [
                     {search: 'src="/scripts.js"', replace: `src="${baseHref}scripts.js"`},
-                    {search: 'href="/', replace: `href="${baseHref}`},
+                    {search: /href="\/(.*?)"/g, replace: `href="${baseHref}$1"`},
                 ]
             }
         }, {

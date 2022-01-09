@@ -1,11 +1,14 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const dotenv = require('dotenv');
-dotenv.config();
-var globule = require('globule');
-var filepaths = globule.find('src/**/*.html');
+const globule = require('globule');
+const filepaths = globule.find('src/**/*.html');
 const {BaseHrefWebpackPlugin} = require('base-href-webpack-plugin');
+
+const baseHref = process.env.WEBPACK_DEV_SERVER ? '/' : process.env.BASE_HREF;
 
 let multipleHtmlPlugins = filepaths.map(path => {
     const relativePath = path.replace(/^src\//, '');
@@ -16,21 +19,21 @@ let multipleHtmlPlugins = filepaths.map(path => {
     })
 });
 
+const absoluteSrc = path.resolve(__dirname, `./src`)
+
 module.exports = {
     mode: "development",
-    context: path.resolve(__dirname, 'src'),
-
+    context: absoluteSrc,
     devtool: "eval-source-map",
     entry: [`./js/main.js`, './styles/main.scss'],
-
     output: {
         filename: "scripts.js",
-        path: path.resolve(__dirname, `./docs`)
+        path: path.resolve(__dirname, `./docs`),
+        // publicPath: baseHref
     },
     devServer: {
-
-        contentBase: path.join(__dirname, `./src`),
-        publicPath: "/",
+        contentBase: absoluteSrc,
+        // publicPath: baseHref,
         compress: false,
         port: 3001,
         open: ['/'],
@@ -72,13 +75,22 @@ module.exports = {
                             type: 'srcset',
                         },
                     ],
-                    urlFilter: (attribute, value, resourcePath) => {
+                    urlFilter: (attribute, value) => {
                         return !/\.(js|css|scss)$/.test(value);
 
                     },
-                    root: path.resolve(__dirname, 'src'),
+                    root: absoluteSrc,
                 },
             },
+        }, {
+            test: /\.html$/,
+            loader: 'string-replace-loader',
+            options: {
+                multiple: [
+                    {search: 'src="/scripts.js"', replace: `src="${baseHref}scripts.js"`},
+                    {search: 'href="/style.css"', replace: `href="${baseHref}style.css"`},
+                ]
+            }
         }, {
             test: /\.scss$/,
             use: [
@@ -88,20 +100,20 @@ module.exports = {
                 'sass-loader',
             ],
         }, {
-            test: /\.(svg|png|jpe?g|gif)$/i,
+            test: /\.(svg|png|jpe?g|gif|webp|mp\D)$/i,
             loader: 'file-loader',
             options: {
                 name: '[path][name]-[hash].[ext]',
                 outputPath: '', // file pack output path, is relative path for `dist`
-                publicPath: '/', // css file will use, is absolute path for server
+                publicPath: baseHref, // css file will use, is absolute path for server
             }
         }]
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'style.css',
+            filename: `style.css`,
         }),
         ...multipleHtmlPlugins,
-        new BaseHrefWebpackPlugin({baseHref: process.env.BASE_HREF})
+        new BaseHrefWebpackPlugin({baseHref})
     ]
 };

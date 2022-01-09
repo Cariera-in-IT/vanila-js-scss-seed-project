@@ -91,7 +91,7 @@ module.exports = {
             options: {
                 multiple: [
                     {search: 'src="/scripts.js"', replace: `src="${baseHref}scripts.js"`},
-                    {search: 'href="/style.css"', replace: `href="${baseHref}style.css"`},
+                    {search: 'href="/', replace: `href="${baseHref}`},
                 ]
             }
         }, {

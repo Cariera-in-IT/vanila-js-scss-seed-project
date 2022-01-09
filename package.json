@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --hot -d --open",
     "watch": "nodemon --exec \"npm run start\" ./webpack.config.js",
     "build": "rm -rf docs && NODE_ENV=production webpack",
-    "github": " git add . && git commit -a -m \"No message\"||exit 0 && git push origin main"
+    "github": " (git add .) && (git commit -a -m \"No message\" || exit 0) && (git push origin main)"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

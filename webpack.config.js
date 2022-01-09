@@ -103,7 +103,7 @@ module.exports = {
                 'sass-loader',
             ],
         }, {
-            test: /\.(svg|png|jpe?g|gif|webp|mp\D)$/i,
+            test: /\.(svg|png|jpe?g|gif|webp|mp\D|md)$/i,
             loader: 'file-loader',
             options: {
                 name: '[path][name]-[hash].[ext]',

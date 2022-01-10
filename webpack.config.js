@@ -4,14 +4,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const globule = require('globule');
 const filepaths = globule.find('src/**/*.html');
 const {BaseHrefWebpackPlugin} = require('base-href-webpack-plugin');
+const openBrowser = require('react-dev-utils/openBrowser');
 
 var gitRemote = require('child_process').execSync('git remote get-url origin').toString();
 const gitSearch = /(git@|https:\/\/)([\w\.@]+)(\/|:)([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})/
 
 const repositoryName = gitRemote && gitRemote.match(gitSearch) && gitRemote.match(gitSearch)[5]
 const gitUserName = gitRemote && gitRemote.match(gitSearch) && gitRemote.match(gitSearch)[4]
-const baseHref = process.env.WEBPACK_DEV_SERVER || !repositoryName ? '/' : `/${repositoryName}/`;
-
+const baseHref = process.env.WEBPACK_SERVE || !repositoryName ? '/' : `/${repositoryName}/`;
 console.log('Your github pages url should:', `https://${gitUserName}.github.io/${repositoryName}/`)
 let multipleHtmlPlugins = filepaths.map(path => {
     const relativePath = path.replace(/^src\//, '');
@@ -21,95 +21,107 @@ let multipleHtmlPlugins = filepaths.map(path => {
         chunks: [relativePath], // respective JS files
     })
 });
-
 const absoluteSrc = path.resolve(__dirname, `./src`)
 module.exports = {
     mode: "development",
     context: absoluteSrc,
-    devtool: "eval-source-map",
+    devtool: "eval",
     entry: [`./js/main.js`, './styles/main.scss'],
     output: {
         filename: "scripts.js",
         path: path.resolve(__dirname, `./docs`),
-        // publicPath: baseHref
+        publicPath: baseHref,
+        assetModuleFilename: '[path][name][ext]'
+
     },
+    // resolve: {
+    //     extensions: ['.js', '.json', '.scss', '.jpg'],
+    //     aliasFields: ['browser'],
+    //     alias: {
+    //         assets: path.join(absoluteSrc, '/assets/')
+    //     },
+    //     roots: [absoluteSrc, '.', path.join(absoluteSrc, '/assets/')],
+    // },
     devServer: {
-        contentBase: absoluteSrc,
+        // static: {
+        //     directory: path.join(__dirname, 'public'),
+        // },
+        // contentBase: absoluteSrc,
         // publicPath: baseHref,
         compress: false,
-        port: 3001,
-        open: ['/'],
+        port: 42042,
+        // open: ['/'],
+        onAfterSetupMiddleware: () => {
+            openBrowser("http://localhost:42042");
+        }
     },
     module: {
-        rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: "babel-loader",
-            options: {
-                "presets": [
-                    "@babel/preset-env"
-                ],
-                "plugins": [
-                    ["@babel/transform-runtime"]
-                ],
-                sourceMap: true
-            }
-        }, {
-            test: /\.(html?)$/,
-            loader: 'html-loader',
-            options: {
-                attributes: {
-                    list: [
-                        '...',
-                        {
-                            tag: 'img',
-                            attribute: 'data-src',
-                            type: 'src',
-                        },
-                        {
-                            tag: 'source',
-                            attribute: 'srcset',
-                            type: 'srcset',
-                        },
-                        {
-                            tag: 'img',
-                            attribute: 'data-srcset',
-                            type: 'srcset',
-                        },
-                    ],
-                    urlFilter: (attribute, value) => {
-                        return !/\.(js|css|scss)$/.test(value);
-
-                    },
-                    root: absoluteSrc,
-                },
+        rules: [
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: "asset/resource"
             },
-        }, {
-            test: /\.html$/,
-            loader: 'string-replace-loader',
-            options: {
-                multiple: [
-                    {search: 'src="/scripts.js"', replace: `src="${baseHref}scripts.js"`},
-                    {search: /href="\/(.*?)"/g, replace: `href="${baseHref}$1"`},
-                ]
-            }
-        }, {
-            test: /\.scss$/,
-            use: [
-                // fallback to style-loader in development
-                MiniCssExtractPlugin.loader,
-                'css-loader',
-                'sass-loader',
-            ],
-        }, {
-            test: /\.(svg|png|jpe?g|gif|webp|mp\D|md)$/i,
-            loader: 'file-loader',
-            options: {
-                name: '[path][name]-[hash].[ext]',
-                outputPath: '', // file pack output path, is relative path for `dist`
-                publicPath: baseHref, // css file will use, is absolute path for server
-            }
-        }]
+            {
+                test: /\.(html?)$/,
+                loader: 'html-loader',
+                options: {
+                    sources: {
+                        list: [
+                            '...',
+                            {
+                                tag: 'img',
+                                attribute: 'data-src',
+                                type: 'src',
+                            },
+                            {
+                                tag: 'source',
+                                attribute: 'srcset',
+                                type: 'srcset',
+                            },
+                            {
+                                tag: 'img',
+                                attribute: 'data-srcset',
+                                type: 'srcset',
+                            },
+
+                        ],
+                        urlFilter: (attribute, value) => {
+                            console.log('{attribute, value}', {attribute, value})
+                            return !/\.(js|css|scss)$/.test(value);
+                        },
+                    },
+                },
+            }, {
+                test: /\.html$/,
+                loader: 'string-replace-loader',
+                options: {
+                    multiple: [
+                        {search: 'src="/scripts.js"', replace: `src="${baseHref}scripts.js"`},
+                        {search: /<a([^>]+)href="\/(.*?)"/gm, replace: `<a$1href="${baseHref}$2"`},
+                    ]
+                }
+            }, {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
+                options: {
+                    "presets": [
+                        "@babel/preset-env"
+                    ],
+                    "plugins": [
+                        ["@babel/transform-runtime"]
+                    ],
+                    // sourceMap: true
+                }
+            }, {
+                test: /\.s?css$/,
+                use: [
+                    // fallback to style-loader in development
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader',
+                ],
+            }]
     },
     plugins: [
         new MiniCssExtractPlugin({

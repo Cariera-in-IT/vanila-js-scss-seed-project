@@ -1,3 +1,6 @@
+/*!*************************************************************************************************************!*\
+  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/sass-loader/dist/cjs.js!./styles/main.scss ***!
+  \*************************************************************************************************************/
 body {
   background: #ccc;
 }
@@ -5,7 +8,7 @@ body {
 .testBackground {
   height: 200px;
   width: 100%;
-  background-image: url(/vanila-js-scss-seed-project/assets/images/background-40c85d0d4832b27269d4ea463a3b9883.jpg);
+  background-image: url(/vanila-js-scss-seed-project/assets/images/background.jpg);
 }
 
 .container {

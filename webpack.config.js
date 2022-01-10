@@ -98,6 +98,7 @@ module.exports = {
                     multiple: [
                         {search: 'src="/scripts.js"', replace: `src="${baseHref}scripts.js"`},
                         {search: /<a([^>]+)href="\/(.*?)"/gm, replace: `<a$1href="${baseHref}$2"`},
+                        {search: /<link([^>]+)href="\/(.*?)"/gm, replace: `<link$1href="${baseHref}$2"`},
                     ]
                 }
             }, {

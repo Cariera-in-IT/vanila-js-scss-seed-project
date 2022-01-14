@@ -1,6 +1,6 @@
 # vanilla-js-scss-seed-project
 
-***WARNING***: this is a work in progress, for now. We are planning to update dependencies to remove the security warning above.
+***WARNING***: this is a work in progress, for now. We are planning to update some dependencies and improve some static files in the near future. Suggestions are welcome!
 
 ## Why does this project repository exist?
 
@@ -26,13 +26,10 @@ Click the big green button "Use this template" on https://github.com/CosticaPunt
 
 ### Cloning the repository
 
-On your github repository click the green button `code` and copy the url
-
-in a directory run `git clone <paste the url>`
-
-open the newly created folder with the repository name in your favorite editor 
-
-Open a terminal in the editor and run `npm install`
+1. On your github repository click the green button `code` and copy the url
+2. In a directory, run `git clone <paste the url>`
+3. Open the newly created folder with the repository name in your favorite editor
+4. Open a terminal in the editor and run `npm install`
 
 ### Starting local environment
 
@@ -52,10 +49,10 @@ Open a terminal in the editor and run `npm install`
 
 ### Notes
 
-* All feature js features should work out of the box ex. async 
-* Please use https://github.com/CosticaPuntaru/vanilla-js-seed/issues to report issue
+* All feature js features should work out of the box ex. async.
+* Please use https://github.com/CosticaPuntaru/vanilla-js-seed/issues to report issue.
 * If you need help you can find us on our discord server: https://discord.gg/sCM5HqAf
-* Pull requests with features and bugfixes are encouraged 
+* Pull requests with features and bugfixes are encouraged.
 
 ## Enabling github pages for your project
 

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /login
+
+Sitemap: https://$site_domain/sitemap.xml

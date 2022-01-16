@@ -92,16 +92,6 @@ module.exports = {
                     },
                 },
             }, {
-                test: /\.html$/,
-                loader: 'string-replace-loader',
-                options: {
-                    multiple: [
-                        {search: 'src="/scripts.js"', replace: `src="${baseHref}scripts.js"`},
-                        {search: /<a([^>]+)href="\/(.*?)"/gm, replace: `<a$1href="${baseHref}$2"`},
-                        {search: /<link([^>]+)href="\/(.*?)"/gm, replace: `<link$1href="${baseHref}$2"`},
-                    ]
-                }
-            }, {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
@@ -122,7 +112,17 @@ module.exports = {
                     'css-loader',
                     'sass-loader',
                 ],
-            }]
+            },/* {
+                test: /\.html$/,
+                loader: 'string-replace-loader',
+                options: {
+                    multiple: [
+                        {search: 'src="/scripts.js"', replace: `src="${baseHref}scripts.js"`},
+                        {search: /<a([^>]+)href="\/(.*?)"/gm, replace: `<a$1href="${baseHref}$2"`},
+                        {search: /<link([^>]+)href="\/(.*?)"/gm, replace: `<link$1href="${baseHref}$2"`},
+                    ]
+                }
+            }*/]
     },
     plugins: [
         new MiniCssExtractPlugin({

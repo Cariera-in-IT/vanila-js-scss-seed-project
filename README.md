@@ -22,7 +22,7 @@ The main reason behind this is to help you make your work public and easy to lin
 
 ### Make your own copy
 
-Click the big green button "Use this template" on https://github.com/CosticaPuntaru/vanilla-js-seed and set your project name
+Click the big green button "Use this template" on https://github.com/Cariera-in-IT/vanila-js-scss-seed-project and set your project name
 
 ### Cloning the repository
 
@@ -51,7 +51,7 @@ Click the big green button "Use this template" on https://github.com/CosticaPunt
 
 * All JavaScript features should work out of the box, for example: async, hot reload, etc.
 * You can make your life easier when working with favicons, by generating them via https://realfavicongenerator.net/ and overwriting all files in the `/src` folder root so it matches the branding you want for your project.
-* Please use https://github.com/CosticaPuntaru/vanilla-js-seed/issues to report issues with this project.
+* Please use https://github.com/Cariera-in-IT/vanila-js-scss-seed-project/issues to report issues with this project.
 * If you need help you can find us on our Discord server: https://discord.gg/UpnAutz
 * Pull requests with features and bugfixes are highly encouraged.
 

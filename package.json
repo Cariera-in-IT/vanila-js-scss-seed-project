@@ -1,7 +1,7 @@
 {
-  "name": "vanilla-js-seed",
+  "name": "vanilla-js-scss-seed-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "A project destined to help you get started faster with developing a brand new website using simple technologies like SCSS and JavaScript, and have it ready to deploy on GitHub Pages.",
   "main": "index.js",
   "scripts": {
     "page-url": "node ./webpack.config.js",
@@ -34,6 +34,6 @@
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.2"
   },
-  "author": "",
+  "author": "Cariera în IT: Costică 'Tică' Puntaru & Viorel Mocanu",
   "license": "MIT"
 }

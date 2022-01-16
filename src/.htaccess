@@ -1,0 +1,116 @@
+AddDefaultCharset utf-8
+
+<IfModule mod_headers.c>
+
+	# Protects against XSS attacks
+	Header set X-XSS-Protection "1; mode=block"
+
+	# Protects against page-framing & click-jacking - disable if it's important you add iframes to your content
+	Header always set X-Frame-Options "SAMEORIGIN"
+
+	# Protects against content-sniffing
+	Header set X-Content-Type-Options "nosniff"
+
+	# Starts HSTS for Preloading
+	Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+	# Protects against cross domain policy abuse
+	Header set X-Permitted-Cross-Domain-Policies "none"
+
+	# Content Security Policy needs to be correctly defined for each website, according to the resources it uses
+	Header set Content-Security-Policy "default-src 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; child-src 'self'; frame-ancestors 'none'; frame-src 'self' www.google.com; manifest-src 'self'; style-src 'self' https: *.google.com 'unsafe-inline'; script-src 'self' https: 'unsafe-inline' *.google-analytics.com *.googletagmanager.com *.google.com *.googleapis.com data: cdn.jsdelivr.net; connect-src 'self' https: *.google-analytics.com *.googletagmanager.com *.google.com *.googleapis.com data: cdn.jsdelivr.net stats.g.doubleclick.net; font-src 'self' https: data:; img-src https: data:; upgrade-insecure-requests; block-all-mixed-content;"
+
+	# Starts referrer transfer policies
+	Header set Referrer-Policy "strict-origin-when-cross-origin, no-referrer"
+
+	# Browser feature control
+	Header set Feature-Policy "accelerometer 'none'; microphone 'none'; geolocation 'self'; vibrate 'none'; ambient-light-sensor 'self'; autoplay 'self'; camera 'none'; fullscreen 'self';"
+	# Header set Permissions-Policy "accelerometer=Origin(), autoplay=Origin(), camera=(), gyroscope=(), magnetometer=(), microphone=(), payment=Origin(), publickey-credentials-get=(), usb=()"
+
+	# Compatibility with older Internet Exploders... umm... Explorers, sorry
+	Header set X-UA-Compatible "IE=edge"
+
+	# `mod_headers` can't match header by content-type, but the
+	# `X-UA-Compatible` header needs to be sent only for HTML documents, not for other resources
+	<FilesMatch "\.(appcache|atom|bbaw|bmp|crx|css|cur|eot|f4[abpv]|flv|geojson|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|topojson|tt[cf]|txt|vcard|vcf|vtt|webapp|web[mp]|webmanifest|woff2?|xloc|xml|xpi)$">
+		Header unset X-UA-Compatible
+	</FilesMatch>
+
+	# Removes server signature for extra security
+	Header always unset X-Powered-By
+	Header always unset server
+	Header unset X-Powered-By
+	Header unset server
+
+	# Setting caches for various types of files expire at different times
+	# Metas = 1 month
+	<FilesMatch "\.(webmanifest|txt|ico|woff2)$">
+		Header set Cache-Control "max-age=2592000"
+	</FilesMatch>
+	# Images = 1 week
+	<FilesMatch "\.(jpg|jpeg|png|gif|webp|svg)$">
+		Header set Cache-Control "max-age=604800, public"
+	</FilesMatch>
+	# Static files, pages and sitemap = 1 day
+	<FilesMatch "\.(js|css|map|html|xml|php)$">
+		Header set Cache-Control "max-age=86400"
+	</FilesMatch>
+
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# Blocking empty user agents
+	RewriteCond %{HTTPS} !on
+	RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+	RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+	RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+	RewriteCond %{HTTP_USER_AGENT} ^-?$
+	RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+	RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+	RewriteRule ^ - [F]
+
+	# Redirecting current domain to one single variant, e.g.
+	# http://www.domain.com + https://www.domain.com + http://domain.com towards https://domain.com
+	RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+	RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+	RewriteCond %{ENV:HTTPS} !on
+	RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+<IfModule mod_setenvif.c>
+	# Blocking knowingly malitious user agents
+	SetEnvIfNoCase User-Agent ^$ keep_out
+	SetEnvIfNoCase User-Agent (binlar|casper|cmsworldmap|comodo|diavol|dotbot|feedfinder|flicky|ia_archiver|jakarta|kmccrew|nutch|planetwork|purebot|pycurl|skygrid|sucker|turnit|vikspider|zmeu|curl|perl|java) keep_out
+	<limit GET POST PUT>
+		Order Allow,Deny
+		Allow from all
+		Deny from env=keep_out
+	</limit>
+</IfModule>
+
+# "-Indexes" will block users and scripts from opening folder indexes (without index.html for example)
+<IfModule mod_autoindex.c>
+	Options -Indexes
+</IfModule>
+
+# Removing sensitive files from indexing
+IndexIgnore .htaccess *.env */.??* *~ *# */HEADER* */README* */_vti*
+
+# GET and POST settings
+<Limit GET POST>
+	order deny,allow
+	allow from all
+</Limit>
+
+# PUT and DELETE are blocked
+# comment out if you need them working
+<Limit PUT DELETE>
+	order deny,allow
+	deny from all
+</Limit>
+
+# Standard directory index files
+DirectoryIndex index.html index.htm

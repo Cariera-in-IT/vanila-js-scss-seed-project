@@ -62,6 +62,7 @@ There are a number of variables hard coded in the text files in this project wit
 | Variable | Definition |
 | --- | --- |
 | `$site_name` | The actual name of your project, website or portfolio item. |
+| `$site_domain` | The domain name of your deployed website. E.g. `viorelmocanu.ro` or `link-in-bio-umber.vercel.app`. |
 | `$language_short` | The short version of the language your project is in. For example: `en` or `ro`. This uses the [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) standardization. |
 | `$language_long` | The longer version of the language your project is in. It includes the specific region of the language variant, for example: `en-GB` (English spoken in Great Britain) or `ro-RO` (Romanian spoken in Romania). Make use of [this table](https://lingohub.com/developers/supported-locales/language-designators-with-regions) to sort out the correct code you want to use. |
 | `$color_theme` | The color in extended hexadecimal format (e.g. `#bada55`) that is categorized as the "main color" of the branding of the project you're building. For example, `#4F6DF5` is the branding color of the **Carieră în IT** logo you can see above. |

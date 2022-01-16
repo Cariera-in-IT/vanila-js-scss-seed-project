@@ -51,9 +51,9 @@
 
 		<a href="#content" class="ScreenReaders">Jump directly to the content</a>
 
-		<header id="header" role="navigation">
-			<ul>
-				<li>
+		<header class="Header" id="header" role="navigation">
+			<ul class="Menu">
+				<li class="Active">
 					<a href="/">Home</a>
 				</li>
 				<li>
@@ -74,7 +74,10 @@
 
 			<h1>Vanilla JS/SCSS Seed Project</h1>
 
-			<p><strong>***WARNING***</strong>: this is a work in progress, for now. We are planning to update dependencies to remove the security warning above.</p>
+			<div class="Warning">
+				<h2>WARNING</h2>
+				<p>this is a work in progress, for now. We are planning to update dependencies and make the project a bit more helpful and descriptive.</p>
+			</div>
 			
 			<h2>Why does this project repository exist?</h2>
 
@@ -147,10 +150,6 @@
 			<p>Use the link provided after hitting save to brag about your awesome work!</p>
 
 		</div>
-
-		<pre id="readme-content">
-			readme content
-		</pre>
 
 		<div class="testBackground">
 			test background

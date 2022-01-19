@@ -5,8 +5,9 @@ const globule = require('globule');
 const filepaths = globule.find('src/**/*.html');
 const {BaseHrefWebpackPlugin} = require('base-href-webpack-plugin');
 const openBrowser = require('react-dev-utils/openBrowser');
+const { execSync } = require('child_process');
 
-var gitRemote = require('child_process').execSync('git remote get-url origin').toString();
+const gitRemote = execSync('git remote get-url origin', { encoding: 'utf8' });
 const gitSearch = /(git@|https:\/\/)([\w\.@]+)(\/|:)([\w,\-,\_]+)\/([\w,\-,\_]+)(.git){0,1}((\/){0,1})/
 
 const repositoryName = gitRemote && gitRemote.match(gitSearch) && gitRemote.match(gitSearch)[5]

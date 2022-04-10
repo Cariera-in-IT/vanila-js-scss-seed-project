@@ -1,0 +1,15 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+Founder of Carieră în IT: Costică Puntaru
+GitHub: https://github.com/CosticaPuntaru
+LinkedIn: https://www.linkedin.com/in/costicapuntaru/
+Location: Bucharest, Romania
+
+Founder of Carieră în IT: Viorel Mocanu
+Site: https://viorelmocanu.ro/
+GitHub: https://github.com/ViorelMocanu
+LinkedIn: https://www.linkedin.com/in/viorelmocanu/
+Twitter: http://twitter.com/ViorelMocanu
+YouTube: https://www.youtube.com/ViorelMocanu
+Location: Bucharest, Romania

@@ -1,0 +1,73 @@
+/* The SCSS or CSS you write in this file will be merged with all the other files you reference when deploying */
+
+@import "reset";
+
+/* The CSS below is for demo purposes only, feel free to remove it and start fresh! */
+
+/* SCSS variables to use within @media declarations */
+$resolution-medium: 1000px;
+$resolution-large: 1400px;
+/* Regular CSS variables to use everywhere else */
+:root {
+  --color-theme: #4F6DF5;
+  --color-complementary: #A88314;
+  --color-complementary-light: #F5CB4E;
+  --color-triad-red: #F58967;
+  --color-triad-green: #68A82D;
+  --color-gray-light: #eee;
+  --color-gray-dark: #555;
+  --color-black: #010101;
+  --color-white: #fefefe;
+}
+
+.ScreenReaders { clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%); height: 1px; width: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; }
+.ScreenReaders:focus { clip: none; height: auto; width: auto; margin: initial; position: static; }
+
+html { font-family: Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.5em; }
+
+body { display: block; }
+
+h1, h2, h3, h4, h5, h6 { margin: 1rem 0; font-weight: bold; line-height: 1.1em; }
+
+h1 { font-size: clamp(2rem, 5vw, 4rem); color: var(--color-theme); }
+h2 { font-size: clamp(1.5rem, 3vw, 3rem); }
+
+img { display: block; width: auto; max-width: 100%; height: auto; }
+
+ul, ol { padding: 0 0 0 1rem; overflow: hidden; }
+
+a { color: var(--color-theme); text-decoration: underline; }
+a:hover { color: var(--color-triad-red); text-decoration: none; }
+a:active { color: var(--color-complementary); text-decoration: underline; }
+
+.Container { display: block; padding: 1rem;
+	@media (min-width: $resolution-medium) { padding: 2vh 3vw; }
+	@media (min-width: $resolution-large) { max-width: calc($resolution-large - 4vh); padding: 2vh; margin: 2vh auto; box-shadow: 0 3em 3em rgba(0,0,0,0.1); border-radius: 2vh; }
+}
+	.Header { margin: -1rem -1rem 0; background: var(--color-gray-light); border-bottom: 1px solid var(--color-gray-dark);
+		@media (min-width: $resolution-medium) { margin: -2vh -3vw 0; }
+		@media (min-width: $resolution-large) { margin: -2vh -2vh 2vh; border-top-left-radius: 2vh; border-top-right-radius: 2vh; }
+	}
+		.Menu { display: flex; flex-direction: row; margin: 0; padding: 0; list-style-type: none; font-size: 1rem; line-height: 1em;
+			@media (min-width: 600px) { font-size: 2rem; line-height: 1em; }
+		}
+			.Menu li { display: block; flex-grow: 1; text-align: center; }
+				.Menu a { display: block; padding: 0.5em; color: var(--color-black); text-decoration: none; font-weight: bold; }
+				.Menu a:hover { background: var(--color-theme); color: var(--color-white); }
+				.Menu li:first-child a:hover {
+					@media (min-width: $resolution-large) { border-top-left-radius: 2vh; }
+				}
+				.Menu li:last-child a:hover {
+					@media (min-width: $resolution-large) { border-top-right-radius: 2vh; }
+				}
+				.Menu .Active a { background: var(--color-black); color: var(--color-white); }
+				.Menu li:first-child.Active a {
+					@media (min-width: $resolution-large) { border-top-left-radius: 2vh; }
+				}
+				.Menu li:last-child.Active a {
+					@media (min-width: $resolution-large) { border-top-right-radius: 2vh; }
+				}
+	.Warning { padding: 1px 1rem; margin: 1rem 0; border: 1px solid var(--color-complementary); background: var(--color-complementary-light); border-radius: 1rem;
+		@media (min-width: $resolution-large) { margin: 2vh 0; }
+	}
+		.Warning h2 { font-size: clamp(1.5rem, 2vw, 2rem); }
